@@ -58,10 +58,26 @@ while True:
 
     elif(choice==4):
 
-        print("update employe selected")
+        
+        print("Update Consumer selected")
+        consumerCode = input("Enter the consumer code to update consumer: ")
+        consumerName = input("Enter the consumer name to update: ")
+        consumerPhone = input("Enter the consumer phone to update: ")
+        consumerAddress = input("Enter the consumer address to update: ")
+        sql = "UPDATE `consumer` SET `consumerName`='"+consumerName+"',`consumerPhone`='"+consumerPhone+"',`consumerAddress`='"+consumerAddress+"' WHERE `consumerCode` = "+consumerCode
+        mycursor.execute(sql)
+        mydb.commit()
+        print("Data updated successfully")
 
     elif(choice==5):
-        print("view employe selected")
+       
+       print("View All Consumer selected")
+       sql = "SELECT `consumerCode`, `consumerName`, `consumerPhone`, `consumerAddress` FROM `consumer` "
+       mycursor.execute(sql)
+       result = mycursor.fetchall()
+       for i in result:
+            print(i)
+       
 
     elif(choice==6):
         print("generate the consumerbill ")
