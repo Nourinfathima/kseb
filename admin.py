@@ -26,12 +26,26 @@ while True:
     choice = int(input("Enter an option: "))
 
     if(choice==1):
-
-        print("add consumer selected")
+        print("Add consumer selected")
+        consumerCode = input("Enter the consumer code: ")
+        consumerName = input("Enter the consumer name: ")
+        consumerPhone = input("Enter the consumer phone: ")
+        consumerAddress = input("Enter the consumer address: ")
+        sql = "INSERT INTO `consumer`(`consumerCode`, `consumerName`, `consumerPhone`, `consumerAddress`) VALUES (%s,%s,%s,%s,%s)"
+        data = (consumerCode,consumerName,consumerPhone,consumerAddress)
+        mycursor.execute(sql,data)
+        mydb.commit()
+        print("Data inserted successfully")
 
     elif(choice==2):
 
-        print("search  consumer selected")
+        print("Search Consumer selected")
+        searchOption = input("Enter the Consumer Code/Name/Phone to search: ")
+        sql = "SELECT `consumerCode`, `consumerName`, `consumerPhone`8, `consumerAddress` FROM `consumer` WHERE `consumerCode` ='"+searchOption+"'  OR `consumerName`='"+searchOption+"' OR `consumerPhone` ='"+searchOption+"' "
+        mycursor.execute(sql)
+        result = mycursor.fetchall()
+        for i in result:
+            print(i)
 
     elif(choice==3):
 
